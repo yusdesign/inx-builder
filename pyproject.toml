@@ -5,23 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "inx-builder"
 version = "0.1.0"
-description = "Command-line tool for building Inkscape extensions"
+description = "Command-line factory for Inkscape extensions - build with speed!"
 readme = "README.md"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "yusdesign", email = "swiftcase@gmail.com"}
 ]
 license = {text = "MIT"}
-keywords = ["inkscape", "extension", "builder", "tool"]
+keywords = ["inkscape", "extension", "builder", "cli", "template", "generator"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "Topic :: Multimedia :: Graphics :: Editors :: Vector-Based",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Code Generators",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 requires-python = ">=3.8"
 dependencies = [
@@ -31,19 +33,30 @@ dependencies = [
 ]
 
 [project.scripts]
-inx-builder = "inx_builder.cli:main"
+inx = "inx_builder.cli:main"  # Short command!
+inx-builder = "inx_builder.cli:main"  # Long command for clarity
 
 [project.urls]
-Homepage = "https://github.com/yourusername/inx-builder"
-Bug-Tracker = "https://github.com/yourusername/inx-builder/issues"
+Homepage = "https://github.com/yusdesign/inx-builder"
+Repository = "https://github.com/yusdesign/inx-builder.git"
+"Issue Tracker" = "https://github.com/yusdesign/inx-builder/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["inx_builder*"]
 
 [tool.setuptools.package-data]
-inx_builder = ["templates/**/*"]
+"*" = ["templates/**/*", "examples/**/*"]
 
 [tool.black]
 line-length = 88
 target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
