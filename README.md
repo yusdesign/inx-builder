@@ -35,3 +35,23 @@ inx-builder/
 └── scripts/  
     ├── build_example.py   # Build from example config  
     └── install_dev.py     # Install in development mode  
+
+
+# INX Builder
+
+A command-line tool for rapidly building Inkscape extensions with proper structure and templates.
+
+## Features
+
+- 🚀 Generate Inkscape extensions from templates
+- 📝 Create parameter definitions with proper XML
+- 🏗️ Multiple template types (effect, render, input/output)
+- 🔧 Interactive and config-file driven modes
+- 📦 Package extensions as ZIP files
+- 🛠️ Install directly to Inkscape
+
+## Installation
+
+### From PyPI (coming soon)
+```bash
+pip install inx-builder
