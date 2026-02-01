@@ -17,7 +17,11 @@ class ExtensionBuilder:
     """Builds Inkscape extensions from templates"""
     
     def __init__(self, config=None, template_name=None):
-        self.config = ExtensionConfig(config or {})
+        from .config import ExtensionConfig
+        if isinstance(config, dict):
+            self.config = ExtensionConfig.from_dict(config)
+        else:
+            self.config = config
         self.template_name = template_name or self.config.type or 'basic_effect'
         
         # Setup Jinja2 environment
