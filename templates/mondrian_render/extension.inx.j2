@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <_name>{{ config.name }}</_name>
+  <id>{{ ext_id }}</id>
+  <dependency type="executable" location="extensions">python3</dependency>
+  
+  <param name="tab" type="notebook">
+    <page name="canvas" gui-text="Canvas"/>
+    <page name="grid" gui-text="Grid Settings"/>
+    <page name="colors" gui-text="Colors"/>
+    <page name="advanced" gui-text="Advanced"/>
+  </param>
+  
+  <!-- Canvas Parameters -->
+  <param name="width" type="float" min="100" max="5000"
+         gui-text="Width" gui-description="Canvas width in pixels">800</param>
+  <param name="height" type="float" min="100" max="5000"
+         gui-text="Height" gui-description="Canvas height in pixels">600</param>
+  
+  <!-- Grid Parameters -->
+  <param name="vertical_lines" type="int" min="1" max="50"
+         gui-text="Vertical Lines" gui-description="Number of vertical grid lines">4</param>
+  <param name="horizontal_lines" type="int" min="1" max="50"
+         gui-text="Horizontal Lines" gui-description="Number of horizontal grid lines">5</param>
+  <param name="line_thickness" type="float" min="0.1" max="20"
+         gui-text="Line Thickness" gui-description="Thickness of grid lines">3.0</param>
+  
+  <!-- Color Parameters -->
+  <param name="color_density" type="float" min="0" max="1"
+         gui-text="Color Density" gui-description="Percentage of rectangles to color">0.3</param>
+  <param name="palette" type="optiongroup" appearance="combo"
+         gui-text="Color Palette">
+    <_option value="classic">Classic Mondrian</_option>
+    <_option value="modern">Modern Colors</_option>
+    <_option value="grayscale">Grayscale</_option>
+  </param>
+  
+  <!-- Advanced Parameters -->
+  <param name="seed" type="int" min="0" max="999999"
+         gui-text="Random Seed" gui-description="0 for random">0</param>
+  <param name="margin" type="float" min="0" max="0.5"
+         gui-text="Margin" gui-description="Space from edges">0.05</param>
+  
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Render"/>
+    </effects-menu>
+  </effect>
+  
+  <script>
+    <command location="inx" interpreter="python">{{ snake_name }}.py</command>
+  </script>
+</inkscape-extension>

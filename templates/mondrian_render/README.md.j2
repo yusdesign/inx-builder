@@ -1,0 +1,46 @@
+# {{ config.name }}
+
+{{ config.description }}
+
+## Features
+- Adjustable canvas size
+- Customizable grid density
+- Multiple color palettes
+- Random seed for reproducibility
+
+## Installation
+Copy `{{ snake_name }}.inx` and `{{ snake_name }}.py` to your Inkscape extensions directory:
+- Windows: `%APPDATA%\inkscape\extensions\`
+- Linux: `~/.config/inkscape/extensions/`
+- macOS: `~/Library/Application Support/inkscape/extensions/`
+
+## Usage
+1. Open Inkscape
+2. Go to **Extensions → Render → {{ config.name }}**
+3. Adjust parameters in the dialog
+4. Click "Apply"
+
+## Parameters
+### Canvas
+- **Width/Height**: Canvas dimensions in pixels
+
+### Grid Settings
+- **Vertical/Horizontal Lines**: Number of grid lines
+- **Line Thickness**: Thickness of grid lines
+
+### Colors
+- **Color Density**: Percentage of rectangles to color (0-1)
+- **Color Palette**: Color scheme selection
+
+### Advanced
+- **Random Seed**: 0 for random, any number for reproducible results
+- **Margin**: Space from edges (0-0.5)
+
+## Development
+This extension was generated with [INX Builder](https://github.com/yusdesign/inx-builder)
+
+## Next Steps
+Implement the actual Mondrian generation logic in the Python file.
+
+## License
+GPL-2.0-or-later (compatible with Inkscape)

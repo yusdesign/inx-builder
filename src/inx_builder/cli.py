@@ -70,6 +70,53 @@ if __name__ == '__main__':
     print(f"📁 Location: {output_path}")
     print(f"📄 Files: {snake_name}.inx, {snake_name}.py")
 
+def create_extension_from_template(name, ext_type, author, output_dir, template_name=None):
+    """Create extension using template system"""
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    
+    snake_name = name.lower().replace(' ', '_')
+    camel_name = ''.join(word.title() for word in name.split())
+    
+    # Choose template
+    if template_name:
+        template_dir = Path(__file__).parent.parent / 'templates' / template_name
+    elif ext_type == 'render':
+        template_dir = Path(__file__).parent.parent / 'templates' / 'mondrian_render'
+    else:
+        template_dir = Path(__file__).parent.parent / 'templates' / 'basic_effect'
+    
+    if not template_dir.exists():
+        print(f"⚠️ Template not found: {template_dir}")
+        return create_simple_extension(name, ext_type, author, output_dir)
+    
+    # Read and process templates
+    for template_file in template_dir.glob('*.j2'):
+        with open(template_file, 'r', encoding='utf-8') as f:
+            template_content = f.read()
+        
+        # Simple template replacement (for now)
+        content = template_content
+        content = content.replace('{{ config.name }}', name)
+        content = content.replace('{{ config.author }}', author)
+        content = content.replace('{{ config.description }}', f'{name} Inkscape Extension')
+        content = content.replace('{{ ext_id }}', f'org.inkscape.{ext_type}.{snake_name}')
+        content = content.replace('{{ snake_name }}', snake_name)
+        content = content.replace('{{ camel_name }}', camel_name)
+        content = content.replace('{{ year }}', '2024')
+        
+        output_file = template_file.stem  # Remove .j2
+        if output_file == 'extension':
+            output_file = snake_name
+        
+        with open(output_path / output_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+    
+    print(f"🎨 Created: {name} (using template: {template_dir.name})")
+    print(f"📁 Output: {output_path}")
+    
+    return output_path
+
 
 def main():
     parser = argparse.ArgumentParser(description="Simple INX Builder")
