@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""
+{{ ext_name }} - {{ config.description }}
+Generated with INX Builder v{{ year }}
+"""
+
+import inkex
+
+
+class {{ camel_name }}(inkex.EffectExtension):
+    """{{ config.description }}"""
+    
+    def add_arguments(self, pars):
+        {% for param in params %}
+        pars.add_argument("--{{ param.name }}", type={{ param.type }}, 
+                         default={{ param.default|tojson }},
+                         help="{{ param.gui_description }}")
+        {% endfor %}
+    
+    def effect(self):
+        # TODO: Implement your effect here
+        self.msg("{{ ext_name }} extension executed!")
+        
+        # Access parameters:
+        {% for param in params %}
+        # {{ param.name }} = self.options.{{ param.name }}
+        {% endfor %}
+
+
+if __name__ == '__main__':
+    {{ camel_name }}().run()

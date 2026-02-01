@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <_name>{{ ext_name }}</_name>
+  <id>{{ ext_id }}</id>
+  <dependency type="executable" location="extensions">python3</dependency>
+  
+  {% for param in params %}
+  {{ _param_to_xml(param) }}
+  {% endfor %}
+  
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu name="Extensions"/>
+    </effects-menu>
+  </effect>
+  
+  <script>
+    <command location="inx" interpreter="python">{{ snake_name }}.py</command>
+  </script>
+</inkscape-extension>

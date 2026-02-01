@@ -1,0 +1,26 @@
+# {{ ext_name }}
+
+{{ config.description }}
+
+## Installation
+1. Copy `{{ snake_name }}.inx` and `{{ snake_name }}.py` to your Inkscape extensions directory:
+   - Windows: `%APPDATA%\inkscape\extensions\`
+   - Linux: `~/.config/inkscape/extensions/`
+   - macOS: `~/Library/Application Support/inkscape/extensions/`
+
+2. Restart Inkscape
+
+3. Find it under: **Extensions > {{ ext_name }}**
+
+## Parameters
+{% for param in params %}
+- **{{ param.gui_text }}** (`{{ param.type }}`): {{ param.gui_description }}
+  {% if param.default %}Default: `{{ param.default }}`{% endif %}
+  {% if param.min or param.max %}Range: {{ param.min }} to {{ param.max }}{% endif %}
+{% endfor %}
+
+## Development
+Generated with [INX Builder](https://github.com/yusdesign/inx-builder)
+
+## License
+GPL-2.0-or-later (compatible with Inkscape)
